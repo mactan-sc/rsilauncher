@@ -1,0 +1,21 @@
+[Desktop Entry]
+Categories=Game;
+Comment[en_US]=RSI Launcher
+Comment=RSI Launcher
+Exec=rsi-run
+GenericName[en_US]=RSI Launcher
+GenericName=RSI Launcher
+Icon=com.rsilauncher.RSILauncher
+MimeType=
+Name[en_US]=RSI Launcher
+Name=RSI Launcher
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+Version=1.0
+X-Flatpak=com.rsilauncher.RSILauncher
+X-Flatpak-Tags=proprietary;
+X-KDE-SubstituteUID=false
+X-KDE-Username=
