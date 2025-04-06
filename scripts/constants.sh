@@ -4,15 +4,6 @@ export STORE="none"
 export WINEPREFIX="$XDG_DATA_HOME"/prefix
 export PROTONPATH="$XDG_DATA_HOME/proton"
 
-# Nvidia cache options
-export __GL_SHADER_DISK_CACHE=1
-export __GL_SHADER_DISK_CACHE_SIZE=10737418240
-export __GL_SHADER_DISK_CACHE_PATH="$WINEPREFIX"
-export __GL_SHADER_DISK_CACHE_SKIP_CLEANUP=1
-# Mesa (AMD/Intel) shader cache options
-export MESA_SHADER_CACHE_DIR="$WINEPREFIX"
-export MESA_SHADER_CACHE_MAX_SIZE="10G"
-
 export launcher_cfg_path="$XDG_CONFIG_HOME/starcitizen-lug"
 export launcher_cfg="launcher.cfg"
 
