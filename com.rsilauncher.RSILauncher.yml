@@ -198,4 +198,22 @@ modules:
           - type: file
             dest-filename: rsi-run
             path: scripts/rsi-run.sh
+      - name: control-script
+        buildsystem: simple
+        build-commands:
+          - mkdir -p /app/bin
+          - install control /app/bin/control
+        sources:
+          - type: file
+            dest-filename: control
+            path: scripts/control.sh
+      - name: winecfg-script
+        buildsystem: simple
+        build-commands:
+          - mkdir -p /app/bin
+          - install winecfg /app/bin/winecfg
+        sources:
+          - type: file
+            dest-filename: winecfg
+            path: scripts/winecfg.sh
 
