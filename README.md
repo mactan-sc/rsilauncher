@@ -10,5 +10,5 @@ RSI Launcher packaged in a flatpak based on https://github.com/nmlynch94/com.eve
 - Open a terminal (konsole, etc)
 - Run
 ```
-curl -fSsL https://raw.githubusercontent.com/mactan/com.rsilauncher.RSILauncher/refs/heads/main/install-rsi-launcher-repo.sh | bash
+curl -fSsL https://github.com/mactan-sc/com.rsilauncher.RSILauncher/blob/main/install-rsi-launcher-repo.sh | bash
 ```

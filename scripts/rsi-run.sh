@@ -4,6 +4,12 @@ set -eua pipefail
 cd "$XDG_DATA_HOME"
 source /app/constants.sh
 
+mkdir -p "$launcher_cfg_path"
+if [ ! -f "$launcher_cfg_path/$launcher_cfg" ]; then
+  cp "/app/launcher.cfg" "$launcher_cfg_path"
+fi
+source "$XDG_CONFIG_HOME/starcitizen-lug/launcher.cfg"
+
 Launcher_setup_exe_url="https://install.robertsspaceindustries.com/rel/2/RSI%20Launcher-Setup-2.3.1.exe"
 installer_name="RSI-Launcher-setup.exe"
 
@@ -23,7 +29,7 @@ if ! [ -f "$launcher_exe_path" ]; then
   mkdir proton
   tar -xzf "proton.tar.gz" -C proton --strip-components=1
 
-  # Install dotnet8 and launch
+  # Install deps and launch
   umu-run winetricks -q arial tahoma powershell win10
   curl -o "$installer_name" -L "$Launcher_setup_exe_url"
   WINE_NO_PRIV_ELEVATION=1 umu-run "$installer_name"

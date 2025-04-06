@@ -182,6 +182,13 @@ modules:
         sources:
           - type: file
             path: scripts/constants.sh
+      - name: config
+        buildsystem: simple
+        build-commands:
+          - install launcher.cfg /app/launcher.cfg
+        sources:
+          - type: file
+            path: launcher.cfg
       - name: launch-script
         buildsystem: simple
         build-commands:

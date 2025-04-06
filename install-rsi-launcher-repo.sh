@@ -10,7 +10,7 @@ if [[ -f /proc/driver/nvidia/version ]]; then
 fi
 
 flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak remote-add --user --if-not-exists RSILauncher https://mactan.github.io/com.rsilauncher.RSILauncher/RSILauncher.flatpakrepo
+flatpak remote-add --user --if-not-exists RSILauncher https://mactan-sc.github.io/com.rsilauncher.RSILauncher/RSILauncher.flatpakrepo
 
 # https://github.com/flatpak/flatpak/issues/3094
 flatpak install --user -y --noninteractive flathub \
