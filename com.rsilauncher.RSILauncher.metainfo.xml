@@ -10,17 +10,16 @@
     </p>
 </description>
 <metadata_license>CC0-1.0</metadata_license>
-<project_license>LicenseRef-proprietary=https://www.jagex.com/en-GB/terms/eula</project_license>
-<url type="homepage">https://www.jagex.com</url>
+<project_license>LicenseRef-proprietary=https://robertsspaceindustries.com/en/eula</project_license>
+<url type="homepage">https://robertsspaceindustries.com</url>
 <categories>
     <category>Game</category>
 </categories>
 <screenshots>
-    <screenshot type="default">https://www.jagex.com/images/launcher-preview-large-rs-202309.jpg</screenshot>
+    <screenshot type="default">https://media.robertsspaceindustries.com/hvsgzr4uga1w5/source.jpg</screenshot>
 </screenshots>
 <releases>
-  <release version="8" date="2022-07-15"/>
-  <release version="0.29.1.0" date="2023-11-21"/>
+  <release version="2.3.1" date="2025-02-24"/>
 </releases>
 <content_rating type="oars-1.1">
     <content_attribute id="violence-cartoon">moderate</content_attribute>
