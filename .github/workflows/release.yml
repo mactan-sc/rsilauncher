@@ -61,7 +61,7 @@ jobs:
           git tag ${{ steps.variables.outputs.NEW_TAG }}
           git push "https://$GITHUB_ACTOR:${{ secrets.ACCESS_TOKEN }}@github.com/$GITHUB_REPOSITORY.git" --tags
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           files: |
             ${{ steps.variables.outputs.APP_NAME }}.flatpak
