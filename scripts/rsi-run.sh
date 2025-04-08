@@ -26,7 +26,7 @@ if ! [ -f "$launcher_exe_path" ]; then
   echo "Checksum is valid"
 
   # Install proton
-  mkdir proton
+  mkdir -p proton
   tar -xzf "proton.tar.gz" -C proton --strip-components=1
 
   # Install deps and launch
