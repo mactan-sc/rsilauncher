@@ -4,7 +4,7 @@ This is in no way affiliated with Cloud Imperium Games and running the launcher 
 ## What is this?
 RSI Launcher packaged in a flatpak based on https://github.com/nmlynch94/com.eveonline.EveOnline
 
-For other Star Citizen LUG community tools visit https://github.com/starcitizen-lug 
+For other Star Citizen LUG community tools visit https://github.com/starcitizen-lug
 
 ## Options
 `flatpak run com.rsilauncher.RSILauncher`
@@ -22,7 +22,7 @@ For other Star Citizen LUG community tools visit https://github.com/starcitizen-
 - Open a terminal (konsole, etc)
 - Run
 ```
-curl -fSsL https://github.com/mactan-sc/com.rsilauncher.RSILauncher/blob/main/install-rsi-launcher-repo.sh | bash
+curl -fSsL https://github.com/mactan-sc/rsilauncher/blob/main/install-rsi-launcher-repo.sh | bash
 ```
 
 <p align="center">
