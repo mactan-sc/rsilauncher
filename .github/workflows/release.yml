@@ -32,7 +32,7 @@ jobs:
           NEW_VERSION="$MAJOR.$MINOR.$((PATCH+1))"
           echo "NEW_TAG=$NEW_VERSION" >> $GITHUB_OUTPUT
           echo "APP_NAME=$(basename $(pwd))" >> $GITHUB_OUTPUT
-          echo "flatpak build-bundle ~/.local/share/flatpak/repo ${{ steps.variables.outputs.APPID }}.flatpak ${{ steps.variables.outputs.APPID }} stable" >> $GITHUB_OUTPUT
+          echo "APPID=io.github.mactan_sc.RSILauncher" >> $GITHUB_OUTPUT
       - name: Setup GPG
         id: import-gpg
         uses: crazy-max/ghaction-import-gpg@v6
