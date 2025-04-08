@@ -15,7 +15,7 @@ For other Star Citizen LUG community tools visit https://github.com/starcitizen-
 
 `flatpak run --command=winecfg io.github.mactan_sc.RSILauncher`
   - Launch Wine Winecfg
-  
+
 ## Installation
 
 ### Repo (automated updates) - This below command is the only one you need to run to get the launcher running.

@@ -30,7 +30,7 @@ if ! [ -f "$launcher_exe_path" ]; then
   tar -xzf "proton.tar.gz" -C proton --strip-components=1
 
   # Install deps and launch
-  umu-run winetricks -q arial tahoma powershell win10
+  #umu-run winetricks -q arial tahoma powershell win10
   curl -o "$installer_name" -L "$Launcher_setup_exe_url"
   WINE_NO_PRIV_ELEVATION=1 umu-run "$installer_name"
   rm "$installer_name"
