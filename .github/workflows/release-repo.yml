@@ -63,8 +63,8 @@ jobs:
           cd repo
           touch test
           git add -A
-          git commit --signoff -m "Update com.rsilauncher.RSILauncher"
-          git reset $(git commit-tree HEAD^{tree} -m "Update com.rsilauncher.RSILauncher")
+          git commit --signoff -m "Update io.github.mactan_sc.RSILauncher"
+          git reset $(git commit-tree HEAD^{tree} -m "Update io.github.mactan_sc.RSILauncher")
           git push --progress -f origin flatpak-repo
         env:
           GIT_AUTHOR_NAME: ${{ steps.import-gpg.outputs.name }}

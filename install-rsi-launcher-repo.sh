@@ -24,8 +24,8 @@ if [[ ${HAS_NVIDIA} -eq 1 ]]; then
         org.freedesktop.Platform.GL32.nvidia-${NVIDIA_VERISON}/x86_64
 fi
 
-flatpak install -y --user --noninteractive RSILauncher com.rsilauncher.RSILauncher
+flatpak install -y --user --noninteractive RSILauncher io.github.mactan_sc.RSILauncher
 
 # Perform first time setup
-flatpak run com.rsilauncher.RSILauncher
+flatpak run io.github.mactan_sc.RSILauncher
 echo "DONE. You should now be able to launch from your application menu"

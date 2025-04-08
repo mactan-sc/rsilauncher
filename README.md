@@ -7,13 +7,13 @@ RSI Launcher packaged in a flatpak based on https://github.com/nmlynch94/com.eve
 For other Star Citizen LUG community tools visit https://github.com/starcitizen-lug
 
 ## Options
-`flatpak run com.rsilauncher.RSILauncher`
+`flatpak run io.github.mactan_sc.RSILauncher`
   - Launch the RSI Launcher
 
-`flatpak run --command=control com.rsilauncher.RSILauncher`
+`flatpak run --command=control io.github.mactan_sc.RSILauncher`
   - Launch Wine Control Panel
 
-`flatpak run --command=winecfg com.rsilauncher.RSILauncher`
+`flatpak run --command=winecfg io.github.mactan_sc.RSILauncher`
   - Launch Wine Winecfg
   
 ## Installation

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component type="desktop">
-<id>com.rsilauncher.RSILauncher.desktop</id>
+<component type="desktop-application">
+<id>io.github.mactan_sc.RSILauncher</id>
+<launchable type="desktop-id">io.github.mactan_sc.RSILauncher.desktop</launchable>
 <name>RSI Launcher</name>
-<developer_name>Cloud Imperium Games</developer_name>
+<developer id="com.robertsspaceindustries">
+  <name>Roberts Space Industries</name>
+</developer>
 <summary>RSI Launcher</summary>
 <description>
     <p>
@@ -10,13 +13,16 @@
     </p>
 </description>
 <metadata_license>CC0-1.0</metadata_license>
-<project_license>LicenseRef-proprietary=https://robertsspaceindustries.com/en/eula</project_license>
+<project_license>LicenseRef-proprietary=https://robertsspaceindustries.com/en/eula/</project_license>
 <url type="homepage">https://robertsspaceindustries.com</url>
 <categories>
     <category>Game</category>
 </categories>
 <screenshots>
-    <screenshot type="default">https://media.robertsspaceindustries.com/hvsgzr4uga1w5/source.jpg</screenshot>
+    <screenshot type="default">
+      <image>https://media.robertsspaceindustries.com/hvsgzr4uga1w5/source.jpg</image>
+      <caption>RSI Launcher</caption>
+    </screenshot>
 </screenshots>
 <releases>
   <release version="2.3.1" date="2025-02-24"/>
