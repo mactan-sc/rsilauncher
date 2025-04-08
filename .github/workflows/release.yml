@@ -24,6 +24,7 @@ jobs:
       - name: Set variables
         id: variables
         run: |
+          APPID="io.github.mactan_sc.RSILauncher"
           LAST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
           MAJOR=$(echo "$LAST_TAG" | cut -d. -f1)
           MINOR=$(echo "$LAST_TAG" | cut -d. -f2)
@@ -57,8 +58,8 @@ jobs:
         run: |
           chmod +x build.sh
           ./build.sh
-          flatpak build-bundle ~/.local/share/flatpak/repo ${{ $APPID }}.flatpak ${{ $APPID }}
-          sha256sum ${{ steps.variables.outputs.APP_NAME }}.flatpak > ${{ steps.variables.outputs.APP_NAME }}.flatpak.sha256sum
+          flatpak build-bundle ~/.local/share/flatpak/repo ${{ steps.variables.outputs.APPID }}.flatpak ${{ steps.variables.outputs.APPID }}
+          sha256sum ${{ steps.variables.outputs.APPID }}.flatpak > ${{ steps.variables.outputs.APPID }}.flatpak.sha256sum
         env:
           APPID: com.rsilauncher.RSILauncher
       - name: Tag this branch with incremented release version
@@ -70,6 +71,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            ${{ steps.variables.outputs.APP_NAME }}.flatpak
-            ${{ steps.variables.outputs.APP_NAME }}.flatpak.sha256sum
+            ${{ steps.variables.outputs.APPID }}.flatpak
+            ${{ steps.variables.outputs.APPID }}.flatpak.sha256sum
           tag_name: ${{ steps.variables.outputs.NEW_TAG }}
