@@ -58,7 +58,7 @@ jobs:
         run: |
           chmod +x build.sh
           ./build.sh
-          flatpak build-bundle ~/.local/share/flatpak/repo ${{ steps.variables.outputs.APPID }}.flatpak ${{ steps.variables.outputs.APPID }}
+          flatpak build-bundle ~/.local/share/flatpak/repo ${{ steps.variables.outputs.APPID }}.flatpak ${{ steps.variables.outputs.APPID }} stable
           sha256sum ${{ steps.variables.outputs.APPID }}.flatpak > ${{ steps.variables.outputs.APPID }}.flatpak.sha256sum
         env:
           APPID: com.rsilauncher.RSILauncher
