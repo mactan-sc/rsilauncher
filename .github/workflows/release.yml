@@ -48,7 +48,10 @@ jobs:
             flatpak \
             flatpak-builder \
             elfutils \
-            rsync
+            rsync \
+            imagemagick \
+            p7zip \
+            p7zip-rar
       - name: Build the flatpak bundle
         run: |
           chmod +x build.sh
