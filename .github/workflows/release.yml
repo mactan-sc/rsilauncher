@@ -4,6 +4,7 @@ on:
     #branches: main
   workflow_dispatch: # can be manually dispatched under GitHub's "Actions" tab 
 
+
 name: Create Release
 
 permissions:
@@ -56,8 +57,10 @@ jobs:
         run: |
           chmod +x build.sh
           ./build.sh
-          flatpak build-bundle ~/.local/share/flatpak/repo ${{ steps.variables.outputs.APP_NAME }}.flatpak ${{ steps.variables.outputs.APP_NAME }}
+          flatpak build-bundle ~/.local/share/flatpak/repo ${{ $APPID }}.flatpak ${{ $APPID }}
           sha256sum ${{ steps.variables.outputs.APP_NAME }}.flatpak > ${{ steps.variables.outputs.APP_NAME }}.flatpak.sha256sum
+        env:
+          APPID: com.rsilauncher.RSILauncher
       - name: Tag this branch with incremented release version
         id: new-tag
         run: |
