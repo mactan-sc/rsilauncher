@@ -17,20 +17,6 @@ launcher_exe_path="$WINEPREFIX/drive_c/Program Files/Roberts Space Industries/RS
 
 # Install if the RSI Launcher exe does not exist
 if ! [ -f "$launcher_exe_path" ]; then
-  echo "First time install"
-  curl -o "proton.tar.gz" -L "$PROTON_LATEST_URL"
-
-  # Validate checksum
-  echo "Validating checksum equals $PROTON_LATEST_SHA512"
-  echo "$PROTON_LATEST_SHA512 proton.tar.gz" | sha512sum --check
-  echo "Checksum is valid"
-
-  # Install proton
-  mkdir -p proton
-  tar -xzf "proton.tar.gz" -C proton --strip-components=1
-
-  # Install deps and launch
-  #umu-run winetricks -q arial tahoma powershell win10
   curl -o "$installer_name" -L "$Launcher_setup_exe_url"
   WINE_NO_PRIV_ELEVATION=1 umu-run "$installer_name"
   rm "$installer_name"
