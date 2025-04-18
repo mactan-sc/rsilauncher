@@ -1,16 +1,15 @@
 id: io.github.mactan_sc.RSILauncher
-runtime: org.freedesktop.Platform
-runtime-version: &runtime-version "24.08"
+runtime: org.gnome.Platform
+runtime-version: &runtime-version '48'
 x-gl-version: &gl-version "1.4"
 x-gl-versions: &gl-versions 24.08;24.08-extra;1.4
 x-gl-merge-dirs: &gl-merge-dirs vulkan/icd.d;glvnd/egl_vendor.d;OpenCL/vendors;lib/dri;lib/d3d;vulkan/explicit_layer.d;vulkan/implicit_layer.d
-sdk: org.freedesktop.Sdk
+sdk: org.gnome.Sdk
+sdk-extensions:
+  - org.gnome.Sdk.Compat.i386
+  - org.freedesktop.Sdk.Extension.toolchain-i386
 command: rsi-run
 separate-locales: false
-
-sdk-extensions:
-  - org.freedesktop.Sdk.Compat.i386
-  - org.freedesktop.Sdk.Extension.toolchain-i386
 finish-args:
 # pressure vessel
   - --device=all
@@ -189,4 +188,22 @@ modules:
           - type: file
             dest-filename: winecfg
             path: scripts/winecfg.sh
+      - name: maintenance-script
+        buildsystem: simple
+        build-commands:
+          - mkdir -p /app/bin
+          - install maintenance /app/bin/rsi-maintenance
+          - install -Dm644 io.github.mactan_sc.RSILauncher.maintenance.desktop /app/share/applications/io.github.mactan_sc.RSILauncher.maintenance.desktop
+        sources:
+          - type: file
+            dest-filename: maintenance
+            path: scripts/rsi-maintenance.sh
+          - type: file
+            path: io.github.mactan_sc.RSILauncher.maintenance.desktop
+      - name: zenity
+        buildsystem: meson
+        sources:
+          - type: archive
+            url: https://download.gnome.org/sources/zenity/4.1/zenity-4.1.90.tar.xz
+            sha256: bf3679c6205ff48dcebd1e1dff3a3a4a6a0b3a53e1cbc3b098a9ec0b62bd7236
 

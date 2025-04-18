@@ -1,0 +1,21 @@
+[Desktop Entry]
+Categories=Game;
+Comment[en_US]=RSI Launcher Maintenance
+Comment=RSI Launcher Maintenance
+Exec=rsi-maintenance
+GenericName[en_US]=RSI Launcher Maintenance
+GenericName=RSI Launcher
+Icon=io.github.mactan_sc.RSILauncher
+MimeType=
+Name[en_US]=RSI Launcher Maintenance
+Name=RSI Launcher Maintenance
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+Version=1.0
+X-Flatpak=io.github.mactan_sc.RSILauncher
+X-Flatpak-Tags=proprietary;
+X-KDE-SubstituteUID=false
+X-KDE-Username=
