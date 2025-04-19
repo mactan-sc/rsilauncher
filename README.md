@@ -1,10 +1,24 @@
 ## Disclaimer
-This is in no way affiliated with Cloud Imperium Games and running the launcher through linux is unsupported by them. Any issues should be reported here. Use at your own risk.
+This is in no way affiliated with Cloud Imperium Games and running the launcher through linux is unsupported by them. 
+
+Any issues should be reported here. Use at your own risk.
 
 ## What is this?
 RSI Launcher packaged in a flatpak based on https://github.com/nmlynch94/com.eveonline.EveOnline
 
-For other Star Citizen LUG community tools visit https://github.com/starcitizen-lug
+Zenity menus are used for a GUI maintenance experience
+
+Command line arguments are available for quickly launching functions from the terminal.
+
+For Star Citizen Linux User Group community tools visit https://github.com/starcitizen-lug
+
+
+## Configuration 
+
+Configuration is saved in $XDG_CONFIG_HOME/starcitizen-lug/
+- $HOME/.var/app/io.github.mactan_sc.RSILauncher/config/starcitizen-lug/rsilauncher.cfg
+- $HOME/.config/starcitizen-lug/rsilauncher.cfg
+
 
 ## Options
 `flatpak run io.github.mactan_sc.RSILauncher`
@@ -18,11 +32,19 @@ For other Star Citizen LUG community tools visit https://github.com/starcitizen-
 
 ## Installation
 
-### Repo (automated updates) - This below command is the only one you need to run to get the launcher running.
-- Open a terminal (konsole, etc)
-- Run
+### Repo (automated updates)
+Flatpak repository or [latest release](https://github.com/mactan-sc/rsilauncher/releases/latest)  
+1.  Add the repo
 ```
-curl -fSsL https://github.com/mactan-sc/rsilauncher/blob/main/install-rsi-launcher-repo.sh | bash
+flatpak remote-add --user --if-not-exists RSILauncher https://mactan-sc.github.io/rsilauncher/RSILauncher.flatpakrepo
+```
+2.  install the rsi launcher flatpak
+```  
+flatpak install -y --user --noninteractive RSILauncher io.github.mactan_sc.RSILauncher
+```
+3.  run the rsi launcher flatpak
+```
+flatpak run io.github.mactan_sc.RSILauncher
 ```
 
 <p align="center">
