@@ -17,8 +17,40 @@ launcher_exe_path="$WINEPREFIX/drive_c/Program Files/Roberts Space Industries/RS
 
 # Install if the RSI Launcher exe does not exist
 if ! [ -f "$launcher_exe_path" ]; then
-  curl -o "$installer_name" -L "$Launcher_setup_exe_url"
-  WINE_NO_PRIV_ELEVATION=1 umu-run "$installer_name"
+
+  # Format the curl progress bar for zenity
+  FIFO=$(mktemp -u)
+  mkfifo "$FIFO"
+  curl -#L "$Launcher_setup_exe_url" -o "$installer_name" > "$FIFO" 2>&1 & curlpid="$!"
+  stdbuf -oL tr '\r' '\n' < "$FIFO" | \
+  grep --line-buffered -ve "100" | grep --line-buffered -o "[0-9]*\.[0-9]" | \
+  (
+      trap 'kill "$curlpid"' ERR
+      zenity --progress --auto-close --title="RSI Launcher Installer" --text="Downloading RSI Launcher.\n\nThis might take a moment.\n" 2>/dev/null
+  )
+
+  if [ "$?" -eq 1 ]; then
+      # User clicked cancel
+      debug_print continue "Download aborted. Removing $installer_name..."
+      rm --interactive=never "$installer_name"
+      rm --interactive=never "$FIFO"
+      return 1
+  fi
+  rm --interactive=never "$FIFO"
+
+  WINE_NO_PRIV_ELEVATION=1 WINEDLLOVERRIDES="dxwebsetup.exe,dotNetFx45_Full_setup.exe=d" umu-run "$installer_name" /S  | zenity --progress \
+    --pulsate \
+    --no-cancel \
+    --auto-close \
+    --title="RSI Launcher Installer" \
+    --text="Preparing the proton prefix\n"
+
+  if [ $? -eq 0 ]; then
+    zenity --info --text="Installation complete.\n\nyou may now launch the RSI Launcher."
+  else
+    zenity --error --text="Installation failed."
+  fi
+
   rm "$installer_name"
   exit 0 # Prevent running twice after first installation
 fi
