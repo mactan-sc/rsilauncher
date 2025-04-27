@@ -128,8 +128,8 @@ modules:
         install umu-run /app/bin/umu-run
     sources:
       - type: archive
-        url: https://github.com/Open-Wine-Components/umu-launcher/releases/download/1.2.6/umu-launcher-1.2.6-zipapp.tar
-        sha256: ae0bfd9bd3de209d0b6590ffbffc395d79c501b10176e9e239e4a1f842b4ad3a
+        url: https://github.com/Open-Wine-Components/umu-launcher/releases/download/${UMU_LAUNCHER_VERSION}/umu-launcher-${UMU_LAUNCHER_VERSION}-zipapp.tar
+        sha256: ${UMU_LAUNCHER_VERSION_SHA256}
     modules:
       - name: rsi-launcher
         buildsystem: simple

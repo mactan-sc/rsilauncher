@@ -6,7 +6,7 @@ set -e
 HAS_NVIDIA=0
 if [[ -f /proc/driver/nvidia/version ]]; then
     HAS_NVIDIA=1
-    NVIDIA_VERSION=$(sed -n 's/^NVRM version:.* \([0-9]\+\.[0-9]\+\.[0-9]\+\) .*/\1/p' /proc/driver/nvidia/version | sed 's/\./-/g')
+    NVIDIA_VERSION=$(cat /proc/driver/nvidia/version | grep "NVRM version" | grep -oE '[0-9]{3,4}\.[0-9]{1,4}[\.0-9]+\s' | sed 's/\./-/g' | sed 's/ //g')
 fi
 
 flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo

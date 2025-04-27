@@ -1,8 +1,8 @@
 name: Check for updates
 on:
-  schedule: # for scheduling to work this file must be in the default branch
-  - cron: "02 4 * * *" # run every hour
-  workflow_dispatch: # can be manually dispatched under GitHub's "Actions" tab 
+  schedule:
+  - cron: "0 4 * * *"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -23,8 +23,11 @@ jobs:
       - name: Set variables
         id: variables
         run: |
-          echo "APP_NAME=$(basename $(git rev-parse --show-toplevel))" >> $GITHUB_OUTPUT
+          DEBIAN_FRONTEND=noninteractive sudo apt-get update -y
+          git config --global protocol.file.allow always
+          sudo apt-get install --no-install-recommends -y python3
           echo "APPID=io.github.mactan_sc.RSILauncher" >> $GITHUB_OUTPUT
+          python3 scripts/versions.py
       - uses: docker://ghcr.io/flathub/flatpak-external-data-checker:latest
         env:
           GIT_AUTHOR_NAME: Flatpak External Data Checker
@@ -35,4 +38,4 @@ jobs:
           EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
           GITHUB_TOKEN: ${{ secrets.EXTERNAL_DATA_SECRET }}
         with:
-          args: --update --never-fork ${{ steps.variables.outputs.APPID }}.yml # e.g. com.organization.myapp.json
+          args: --update --never-fork ${{ steps.variables.outputs.APPID }}.yml

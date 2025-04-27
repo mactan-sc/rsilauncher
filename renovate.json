@@ -6,8 +6,23 @@
   "packageRules": [
     {
       "commitMessagePrefix": "🚨",
-      "matchUpdateTypes": ["major", "minor", "patch"],
+      "matchUpdateTypes": [
+        "major",
+        "minor",
+        "patch"
+      ],
       "automerge": true
+    }
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": [
+        ".*"
+      ],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>[a-z-]+)(?: depName=(?<depName>[^\\s]+))?(?: packageName=(?<packageName>[^\\s]+))?\\s*\\n\\s*\"version\"\\s*:\\s*\"(?<currentValue>[^\"]+)\",?"
+      ],
+      "versioningTemplate": "loose"
     }
   ],
   "platformAutomerge": true
