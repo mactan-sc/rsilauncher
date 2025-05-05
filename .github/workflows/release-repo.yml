@@ -6,6 +6,7 @@ on:
   push:
     paths-ignore:
       - 'README.md'
+      - 'renovate.json'
     branches:
       - main
       
