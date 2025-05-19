@@ -4,6 +4,33 @@
 # License: GPLv3.0
 ############################################################################
 
+launcher_cfg() {
+    source /app/constants.sh
+    xdg-open "$launcher_cfg_path/$launcher_cfg"
+}
+
+display_logs() {
+    source /app/constants.sh
+    log_list="\n"
+
+    unset game_versions
+    while IFS='' read -r line; do
+        game_versions+=("$line")
+    done < <(find "$WINEPREFIX/drive_c/Program Files/Roberts Space Industries/StarCitizen" -not -path "**/logbackups/*"  -name "Game.log" -exec realpath {} \;)
+
+    log_list+="Game log:\n"
+    for game_version in "${game_versions[@]}"; do
+        log_list+="\n\t<a href='file://$game_version'> $(basename "$(dirname "$game_version")") log </a>\n"
+    done
+
+    log_list+="\nLauncher log:\n\n\t <a href='file://$WINEPREFIX/drive_c/users/$USER/AppData/Roaming/rsilauncher/logs/log.log'>Launcher log</a>\n"
+
+    # Format the info header
+    message_heading="<b>Star Citizen log files</b>"
+
+    message info "$message_heading\n$log_list"
+}
+
 run_winecfg() {
     /app/bin/winecfg
 }
@@ -14,6 +41,129 @@ run_control() {
 
 quit() {
     exit 0
+}
+
+# Display a message to the user.
+# Expects the first argument to indicate the message type, followed by
+# a string of arguments that will be passed to zenity or echoed to the user.
+#
+# To call this function, use the following format: message [type] "[string]"
+# See the message types below for instructions on formatting the string.
+message() {
+    # Sanity check
+    if [ "$#" -lt 2 ]; then
+        debug_print exit "Script error: The message function expects at least two arguments. Aborting."
+    fi
+
+    # Use zenity messages if available
+    if [ "$use_zenity" -eq 1 ]; then
+        case "$1" in
+            "info")
+                # info message
+                # call format: message info "text to display"
+                margs=("--info" "--no-wrap" "--text=")
+                shift 1   # drop the message type argument and shift up to the text
+                ;;
+            "warning")
+                # warning message
+                # call format: message warning "text to display"
+                margs=("--warning" "--text=")
+                shift 1   # drop the message type argument and shift up to the text
+                ;;
+            "error")
+                # error message
+                # call format: message error "text to display"
+                margs=("--error" "--text=")
+                shift 1   # drop the message type argument and shift up to the text
+                ;;
+            "question")
+                # question
+                # call format: if message question "question to ask?"; then...
+                margs=("--question" "--text=")
+                shift 1   # drop the message type argument and shift up to the text
+                ;;
+            "options")
+                # formats the buttons with two custom options
+                # call format: if message options left_button_name right_button_name "which one do you want?"; then...
+                # The right button returns 0 (ok), the left button returns 1 (cancel)
+                if [ "$#" -lt 4 ]; then
+                    debug_print exit "Script error: The options type in the message function expects four arguments. Aborting."
+                fi
+                margs=("--question" "--cancel-label=$2" "--ok-label=$3" "--text=")
+                shift 3   # drop the type and button label arguments and shift up to the text
+                ;;
+            *)
+                debug_print exit "Script Error: Invalid message type passed to the message function. Aborting."
+                ;;
+        esac
+
+        # Display the message
+        zenity "${margs[@]}""$@" --width="420" --title="RSI Launcher Maintenance"
+    else
+        # Fall back to text-based messages when zenity is not available
+        case "$1" in
+            "info")
+                # info message
+                # call format: message info "text to display"
+                printf "\n$2\n\n"
+                if [ "$cmd_line" != "true" ]; then
+                    # Don't pause if we've been invoked via command line arguments
+                    read -n 1 -s -p "Press any key..."
+                fi
+                ;;
+            "warning")
+                # warning message
+                # call format: message warning "text to display"
+                printf "\n$2\n\n"
+                read -n 1 -s -p "Press any key..."
+                ;;
+            "error")
+                # error message. Does not clear the screen
+                # call format: message error "text to display"
+                printf "\n$2\n\n"
+                read -n 1 -s -p "Press any key..."
+                ;;
+            "question")
+                # question
+                # call format: if message question "question to ask?"; then...
+                printf "\n$2\n"
+                while read -p "[y/n]: " yn; do
+                    case "$yn" in
+                        [Yy]*)
+                            return 0
+                            ;;
+                        [Nn]*)
+                            return 1
+                            ;;
+                        *)
+                            printf "Please type 'y' or 'n'\n"
+                            ;;
+                    esac
+                done
+                ;;
+            "options")
+                # Choose from two options
+                # call format: if message options left_button_name right_button_name "which one do you want?"; then...
+                printf "\n$4\n1: $3\n2: $2\n"
+                while read -p "[1/2]: " option; do
+                    case "$option" in
+                        1*)
+                            return 0
+                            ;;
+                        2*)
+                            return 1
+                            ;;
+                        *)
+                            printf "Please type '1' or '2'\n"
+                            ;;
+                    esac
+                done
+                ;;
+            *)
+                debug_print exit "Script Error: Invalid message type passed to the message function. Aborting."
+                ;;
+        esac
+    fi
 }
 
 ############################################################################
@@ -214,11 +364,19 @@ if [ "$#" -gt 0 ]; then
             --help | -h )
                 printf "RSI Launcher Maintenance
 Usage: lug-helper <options>
+  -e, --edit            Edit config file
+  -l, --logs            View logs
   -w, --winecfg         Run winecfg
   -c, --control         Run wine control panel
   -g, --no-gui          Use terminal menus instead of a Zenity GUI
 "
                 exit 0
+                ;;
+            --edit | -e )
+                cargs+=("launcher_cfg")
+                ;;
+            --logs | -l )
+                cargs+=("display_logs")
                 ;;
             --winecfg | -w )
                 cargs+=("run_winecfg")
@@ -239,9 +397,6 @@ Usage: lug-helper <options>
         # Shift forward to the next argument and loop again
         shift
     done
-
-    # Format some URLs for Zenity
-    format_urls
 
     # Call the requested functions and exit
     if [ "${#cargs[@]}" -gt 0 ]; then
@@ -269,14 +424,16 @@ while true; do
     menu_type="radiolist"
 
     # Configure the menu options
+    launcher_cfg_msg="Open config file"
+    display_logs_msg="Display logs"
     winecfg_msg="Launch winecfg"
     control_msg="Launch wine control panel"
     quit_msg="Quit"
 
     # Set the options to be displayed in the menu
-    menu_options=("$winecfg_msg" "$control_msg" "$quit_msg")
+    menu_options=("$launcher_cfg_msg" "$display_logs_msg" "$winecfg_msg" "$control_msg" "$quit_msg")
     # Set the corresponding functions to be called for each of the options
-    menu_actions=("run_winecfg" "run_control" "quit")
+    menu_actions=("launcher_cfg" "display_logs" "run_winecfg" "run_control" "quit")
 
     # Calculate the total height the menu should be
     # menu_option_height = pixels per menu option
