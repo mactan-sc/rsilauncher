@@ -140,7 +140,6 @@ modules:
           - install -Dm644 io.github.mactan_sc.RSILauncher.desktop /app/share/applications/io.github.mactan_sc.RSILauncher.desktop
           - install -Dm644 io.github.mactan_sc.RSILauncher.metainfo.xml /app/share/metainfo/io.github.mactan_sc.RSILauncher.metainfo.xml
           - install -Dm644 RSI-Launcher.png /app/share/icons/hicolor/256x256/apps/io.github.mactan_sc.RSILauncher.png
-          - install -Dm644 RSI-Launcher.png /app/share/icons/hicolor/256x256/apps/io.github.mactan_sc.RSILauncher.png
         sources:
           - type: file
             path: io.github.mactan_sc.RSILauncher.desktop
@@ -195,12 +194,15 @@ modules:
           - mkdir -p /app/bin
           - install maintenance /app/bin/rsi-maintenance
           - install -Dm644 io.github.mactan_sc.RSILauncher.maintenance.desktop /app/share/applications/io.github.mactan_sc.RSILauncher.maintenance.desktop
+          - install -Dm644 RSI-Launcher-Maintenance.png /app/share/icons/hicolor/256x256/apps/io.github.mactan_sc.RSILauncher.maintenance.png
         sources:
           - type: file
             dest-filename: maintenance
             path: scripts/rsi-maintenance.sh
           - type: file
             path: io.github.mactan_sc.RSILauncher.maintenance.desktop
+          - type: file
+            path: icons/256/RSI-Launcher-Maintenance.png
       - name: zenity
         buildsystem: meson
         sources:
