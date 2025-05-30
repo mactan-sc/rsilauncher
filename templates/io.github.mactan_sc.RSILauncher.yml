@@ -34,6 +34,7 @@ finish-args:
   - --filesystem=xdg-data/icons:create
   - --filesystem=xdg-run/app/com.discordapp.Discord
   - --filesystem=xdg-run/discord-ipc-0
+  - --filesystem=xdg-config/MangoHud:ro
 
 add-extensions:
   org.freedesktop.Platform.Compat.i386:
