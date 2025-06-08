@@ -43,6 +43,36 @@ quit() {
     exit 0
 }
 
+# Echo a formatted debug message to the terminal and optionally exit
+# Accepts either "continue" or "exit" as the first argument
+# followed by the string to be echoed
+debug_print() {
+    # This function expects two string arguments
+    if [ "$#" -lt 2 ]; then
+        printf "\nScript error:  The debug_print function expects two arguments. Aborting.\n"
+        read -n 1 -s -p "Press any key..."
+        exit 0
+    fi
+
+    # Echo the provided string and, optionally, exit the script
+    case "$1" in
+        "continue")
+            printf "\n%s\n" "$2"
+            ;;
+        "exit")
+            # Write an error to stderr and exit
+            printf "%s\n" "rsi-maintenance.sh: $2" 1>&2
+            read -n 1 -s -p "Press any key..."
+            exit 1
+            ;;
+        *)
+            printf "%s\n" "rsi-maintenance.sh: Unknown argument provided to debug_print function. Aborting." 1>&2
+            read -n 1 -s -p "Press any key..."
+            exit 0
+            ;;
+    esac
+}
+
 # Display a message to the user.
 # Expects the first argument to indicate the message type, followed by
 # a string of arguments that will be passed to zenity or echoed to the user.
