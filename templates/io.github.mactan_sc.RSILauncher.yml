@@ -37,8 +37,6 @@ finish-args:
   - --filesystem=xdg-config/MangoHud:ro
   - --filesystem=/mnt
   - --filesystem=/media
-  - --filesystem=xdg-data/umu
-  - --filesystem=xdg-data/Steam/compatibilitytools.d
 
 add-extensions:
   org.freedesktop.Platform.Compat.i386:
