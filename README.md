@@ -30,6 +30,9 @@ Configuration is saved in $XDG_CONFIG_HOME/starcitizen-lug/
 `flatpak run --command=winecfg io.github.mactan_sc.RSILauncher`
   - Launch Wine Winecfg
 
+`flatpak run --command=rsi-maintenance  io.github.mactan_sc.RSILauncher`
+  - Launch Maintenance Menu
+
 ## Installation
 
 ### Repo (automated updates)
