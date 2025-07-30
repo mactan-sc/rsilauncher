@@ -2,6 +2,7 @@
 Categories=Game;
 Comment[en_US]=RSI Launcher Maintenance
 Comment=RSI Launcher Maintenance
+Keywords=Star Citizen;StarCitizen
 Exec=rsi-maintenance
 GenericName[en_US]=RSI Launcher Maintenance
 GenericName=RSI Launcher

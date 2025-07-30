@@ -4,6 +4,11 @@
 # License: GPLv3.0
 ############################################################################
 
+open_prefix_dir() {
+    source /app/constants.sh
+    xdg-open "$WINEPREFIX/drive_c/Program Files/Roberts Space Industries"
+}
+
 launcher_cfg() {
     source /app/constants.sh
     xdg-open "$launcher_cfg_path/$launcher_cfg"
@@ -455,15 +460,16 @@ while true; do
 
     # Configure the menu options
     launcher_cfg_msg="Open config file"
+    open_prefix_dir_msg="Open game directory"
     display_logs_msg="Display logs"
     winecfg_msg="Launch winecfg"
     control_msg="Launch wine control panel"
     quit_msg="Quit"
 
     # Set the options to be displayed in the menu
-    menu_options=("$launcher_cfg_msg" "$display_logs_msg" "$winecfg_msg" "$control_msg" "$quit_msg")
+    menu_options=("$launcher_cfg_msg" "$open_prefix_dir_msg" "$display_logs_msg" "$winecfg_msg" "$control_msg" "$quit_msg")
     # Set the corresponding functions to be called for each of the options
-    menu_actions=("launcher_cfg" "display_logs" "run_winecfg" "run_control" "quit")
+    menu_actions=("launcher_cfg" "open_prefix_dir" "display_logs" "run_winecfg" "run_control" "quit")
 
     # Calculate the total height the menu should be
     # menu_option_height = pixels per menu option

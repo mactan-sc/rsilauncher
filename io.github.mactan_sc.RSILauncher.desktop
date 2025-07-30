@@ -2,6 +2,7 @@
 Categories=Game;
 Comment[en_US]=RSI Launcher
 Comment=RSI Launcher
+Keywords=Star Citizen;StarCitizen
 Exec=rsi-run
 GenericName[en_US]=RSI Launcher
 GenericName=RSI Launcher
