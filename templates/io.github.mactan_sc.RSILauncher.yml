@@ -212,4 +212,13 @@ modules:
           - type: archive
             url: https://download.gnome.org/sources/zenity/4.1/zenity-4.1.90.tar.xz
             sha256: bf3679c6205ff48dcebd1e1dff3a3a4a6a0b3a53e1cbc3b098a9ec0b62bd7236
-
+      - name: yq
+        buildsystem: simple
+        build-commands:
+          - mkdir -p /app/bin
+          - install yq /app/bin/yq
+        sources:
+          - type: file
+            dest-filename: yq
+            url: https://github.com/mikefarah/yq/releases/download/v4.47.2/yq_linux_amd64
+            sha256: 1bb99e1019e23de33c7e6afc23e93dad72aad6cf2cb03c797f068ea79814ddb0

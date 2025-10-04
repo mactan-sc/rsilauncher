@@ -10,7 +10,8 @@ if [ ! -f "$launcher_cfg_path/$launcher_cfg" ]; then
 fi
 source "$XDG_CONFIG_HOME/starcitizen-lug/launcher.cfg"
 
-Launcher_setup_exe_url="https://install.robertsspaceindustries.com/rel/2/RSI%20Launcher-Setup-2.8.1.exe"
+VERSION="$(curl -s 'https://install.robertsspaceindustries.com/rel/2/latest.yml' | yq -r '.version')"
+Launcher_setup_exe_url="https://install.robertsspaceindustries.com/rel/2/RSI%20Launcher-Setup-$VERSION.exe"
 installer_name="RSI-Launcher-setup.exe"
 
 launcher_exe_path="$WINEPREFIX/drive_c/Program Files/Roberts Space Industries/RSI Launcher/RSI Launcher.exe"
