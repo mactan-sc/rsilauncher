@@ -15,7 +15,15 @@ For Star Citizen Linux User Group community tools visit https://github.com/starc
 
 ## Configuration 
 
-Configuration is saved in $XDG_CONFIG_HOME/starcitizen-lug/
+Common configuration options
+- Game location
+- Shader Cache location
+- Logging
+- MangoHud / DXVK Hud
+- Wayland
+- HDR
+
+Configuration is saved in $XDG_CONFIG_HOME/starcitizen-lug/ Use RSI Maintenance to open your config file for editing
 - $HOME/.var/app/io.github.mactan_sc.RSILauncher/config/starcitizen-lug/rsilauncher.cfg
 - $HOME/.config/starcitizen-lug/rsilauncher.cfg
 
