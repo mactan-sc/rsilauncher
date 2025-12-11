@@ -191,6 +191,15 @@ modules:
           - type: file
             dest-filename: winecfg
             path: scripts/winecfg.sh
+      - name: regedit-script
+        buildsystem: simple
+        build-commands:
+          - mkdir -p /app/bin
+          - install regedit /app/bin/regedit
+        sources:
+          - type: file
+            dest-filename: regedit
+            path: scripts/regedit.sh
       - name: maintenance-script
         buildsystem: simple
         build-commands:
