@@ -23,7 +23,7 @@ Common configuration options
 - Wayland
 - HDR
 
-Configuration is saved in $XDG_CONFIG_HOME/starcitizen-lug/ Use RSI Maintenance to open your config file for editing
+Use the provided `RSI Maintenance` tool to open your config file for editing. Configuration is saved in $XDG_CONFIG_HOME/starcitizen-lug
 - $HOME/.var/app/io.github.mactan_sc.RSILauncher/config/starcitizen-lug/rsilauncher.cfg
 - $HOME/.config/starcitizen-lug/rsilauncher.cfg
 
