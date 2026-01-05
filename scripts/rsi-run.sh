@@ -39,6 +39,10 @@ if ! [ -f "$launcher_exe_path" ]; then
   fi
   rm --interactive=never "$FIFO"
 
+  # Temporarily force DX11 while we wait for CIG to fix color inversion in Vulkan
+  mkdir -p "${WINEPREFIX}/drive_c/Program Files/Roberts Space Industries/StarCitizen/LIVE"
+  echo "r.graphicsRenderer = 0" > "${WINEPREFIX}/drive_c/Program Files/Roberts Space Industries/StarCitizen/LIVE/USER.cfg"
+
   WINE_NO_PRIV_ELEVATION=1 WINEDLLOVERRIDES="dxwebsetup.exe,dotNetFx45_Full_setup.exe=d" umu-run "$installer_name" /S  | zenity --progress \
     --pulsate \
     --no-cancel \
