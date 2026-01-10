@@ -39,6 +39,9 @@ finish-args:
   - --filesystem=/media
   # prefix
   - --env=WINEPREFIX=/var/data/prefix
+  - --env=GAMEID=umu-starcitizen
+  - --env=STORE=none
+  - --env=PROTONPATH=GE-Proton
 
 add-extensions:
   org.freedesktop.Platform.Compat.i386:
@@ -175,33 +178,6 @@ modules:
           - type: file
             dest-filename: rsi-run
             path: scripts/rsi-run.sh
-      - name: control-script
-        buildsystem: simple
-        build-commands:
-          - mkdir -p /app/bin
-          - install control /app/bin/control
-        sources:
-          - type: file
-            dest-filename: control
-            path: scripts/control.sh
-      - name: winecfg-script
-        buildsystem: simple
-        build-commands:
-          - mkdir -p /app/bin
-          - install winecfg /app/bin/winecfg
-        sources:
-          - type: file
-            dest-filename: winecfg
-            path: scripts/winecfg.sh
-      - name: regedit-script
-        buildsystem: simple
-        build-commands:
-          - mkdir -p /app/bin
-          - install regedit /app/bin/regedit
-        sources:
-          - type: file
-            dest-filename: regedit
-            path: scripts/regedit.sh
       - name: maintenance-script
         buildsystem: simple
         build-commands:

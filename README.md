@@ -35,17 +35,25 @@ Use Flatpak CLI, Flatseal, or the provided `RSI Maintenance` tool to open your c
 `flatpak run io.github.mactan_sc.RSILauncher`
   - Launch the RSI Launcher
 
-`flatpak run --command=control io.github.mactan_sc.RSILauncher`
-  - Launch Wine Control Panel
+- Launch Wine Control Panel
+```
+flatpak run --command=umu-run io.github.mactan_sc.RSILauncher control
+```
 
-`flatpak run --command=winecfg io.github.mactan_sc.RSILauncher`
-  - Launch Wine Winecfg
+- Launch Wine Winecfg
+```
+flatpak run --command=umu-run io.github.mactan_sc.RSILauncher winecfg
+```
 
-`flatpak run --command=regedit io.github.mactan_sc.RSILauncher`
-  - Launch Wine Regedit
+- Launch Wine Regedit
+```
+flatpak run --command=umu-run io.github.mactan_sc.RSILauncher regedit
+```
 
-`flatpak run --command=rsi-maintenance  io.github.mactan_sc.RSILauncher`
-  - Launch Maintenance Menu
+- Launch Maintenance Menu
+```
+flatpak run --command=rsi-maintenance  io.github.mactan_sc.RSILauncher
+```
 
 ## Installation
 

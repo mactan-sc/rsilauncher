@@ -23,12 +23,16 @@ display_logs() {
         game_versions+=("$line")
     done < <(find "$WINEPREFIX/drive_c/Program Files/Roberts Space Industries/StarCitizen" -not -path "**/logbackups/*"  -name "Game.log" -exec realpath {} \;)
 
-    log_list+="Game log:\n"
-    for game_version in "${game_versions[@]}"; do
-        log_list+="\n\t<a href='file://$game_version'> $(basename "$(dirname "$game_version")") log </a>\n"
-    done
+    if ! [[ -z ${game_versions[@]} ]]; then
+        log_list+="Game log:\n"
+        for game_version in "${game_versions[@]}"; do
+            log_list+="\n\t<a href='file://$game_version'> $(basename "$(dirname "$game_version")") log </a>\n"
+        done
+    fi
 
-    log_list+="\nLauncher log:\n\n\t <a href='file://$WINEPREFIX/drive_c/users/$USER/AppData/Roaming/rsilauncher/logs/log.log'>Launcher log</a>\n"
+    if [ -f "$WINEPREFIX/drive_c/users/steamuser/AppData/Roaming/rsilauncher/logs/log.log" ]; then
+        log_list+="\nLauncher log:\n\n\t <a href='file://$WINEPREFIX/drive_c/users/steamuser/AppData/Roaming/rsilauncher/logs/log.log'>Launcher log</a>\n"
+    fi
 
     # Format the info header
     message_heading="<b>Star Citizen log files</b>"
@@ -37,11 +41,15 @@ display_logs() {
 }
 
 run_winecfg() {
-    /app/bin/winecfg
+    umu-run winecfg
 }
 
 run_control() {
-    /app/bin/control
+    umu-run control
+}
+
+run_regedit() {
+    umu-run regedit
 }
 
 quit() {
@@ -403,6 +411,7 @@ Usage: lug-helper <options>
   -l, --logs            View logs
   -w, --winecfg         Run winecfg
   -c, --control         Run wine control panel
+  -r, --regedit         Run regedit
   -g, --no-gui          Use terminal menus instead of a Zenity GUI
 "
                 exit 0
@@ -418,6 +427,9 @@ Usage: lug-helper <options>
                 ;;
             --control | -c )
                 cargs+=("run_control")
+                ;;
+            --regedit | -r )
+                cargs+=("run_regedit")
                 ;;
             --no-gui | -g )
                 # If zenity is unavailable, it has already been set to 0
@@ -464,12 +476,13 @@ while true; do
     display_logs_msg="Display logs"
     winecfg_msg="Launch winecfg"
     control_msg="Launch wine control panel"
+    regedit_msg="Launch regedit"
     quit_msg="Quit"
 
     # Set the options to be displayed in the menu
-    menu_options=("$launcher_cfg_msg" "$open_prefix_dir_msg" "$display_logs_msg" "$winecfg_msg" "$control_msg" "$quit_msg")
+    menu_options=("$launcher_cfg_msg" "$open_prefix_dir_msg" "$display_logs_msg" "$winecfg_msg" "$control_msg" "$regedit_msg" "$quit_msg")
     # Set the corresponding functions to be called for each of the options
-    menu_actions=("launcher_cfg" "open_prefix_dir" "display_logs" "run_winecfg" "run_control" "quit")
+    menu_actions=("launcher_cfg" "open_prefix_dir" "display_logs" "run_winecfg" "run_control" "run_regedit" "quit")
 
     # Calculate the total height the menu should be
     # menu_option_height = pixels per menu option
