@@ -15,15 +15,18 @@ For Star Citizen Linux User Group community tools visit https://github.com/starc
 
 ## Configuration 
 
+Override game location using CLI or Flatseal
+- flatpak override --user --filesystem=/path/to/your/prefix
+- flatpak override --user --env=WINEPREFIX=/path/to/your/prefix io.github.mactan_sc.RSILauncher
+
 Common configuration options
-- Game location
 - Shader Cache location
 - Logging
 - MangoHud / DXVK Hud
 - Wayland
 - HDR
 
-Use the provided `RSI Maintenance` tool to open your config file for editing. Configuration is saved in $XDG_CONFIG_HOME/starcitizen-lug
+Use Flatpak CLI, Flatseal, or the provided `RSI Maintenance` tool to open your config file for editing. Configuration is saved in $XDG_CONFIG_HOME/starcitizen-lug
 - $HOME/.var/app/io.github.mactan_sc.RSILauncher/config/starcitizen-lug/rsilauncher.cfg
 - $HOME/.config/starcitizen-lug/rsilauncher.cfg
 
