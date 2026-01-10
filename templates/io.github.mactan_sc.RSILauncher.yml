@@ -37,6 +37,8 @@ finish-args:
   - --filesystem=xdg-config/MangoHud:ro
   - --filesystem=/mnt
   - --filesystem=/media
+  # prefix
+  - --env=WINEPREFIX=/var/data/prefix
 
 add-extensions:
   org.freedesktop.Platform.Compat.i386:

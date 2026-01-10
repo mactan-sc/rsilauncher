@@ -1,7 +1,6 @@
 #!/bin/sh
 export GAMEID="umu-starcitizen"
 export STORE="none"
-export WINEPREFIX="$XDG_DATA_HOME"/prefix
 export PROTONPATH="GE-Proton"
 
 export launcher_cfg_path="$XDG_CONFIG_HOME/starcitizen-lug"
