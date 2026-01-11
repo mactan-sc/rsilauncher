@@ -178,17 +178,17 @@ modules:
           - type: file
             dest-filename: rsi-run
             path: scripts/rsi-run.sh
-      - name: maintenance-script
+      - name: maintenance
         buildsystem: simple
         build-commands:
           - mkdir -p /app/bin
-          - install maintenance /app/bin/rsi-maintenance
+          - install rsi-maintenance /app/bin/rsi-maintenance
           - install -Dm644 io.github.mactan_sc.RSILauncher.maintenance.desktop /app/share/applications/io.github.mactan_sc.RSILauncher.maintenance.desktop
           - install -Dm644 RSI-Launcher-Maintenance.png /app/share/icons/hicolor/256x256/apps/io.github.mactan_sc.RSILauncher.maintenance.png
         sources:
-          - type: file
-            dest-filename: maintenance
-            path: scripts/rsi-maintenance.sh
+          - type: archive
+            url: https://github.com/mactan-sc/rsi-maintenance/releases/download/${RSI_MAINTENANCE_VERSION}/rsi-maintenance.tar.gz
+            sha256: ${RSI_MAINTENANCE_VERSION_SHA256}
           - type: file
             path: io.github.mactan_sc.RSILauncher.maintenance.desktop
           - type: file
