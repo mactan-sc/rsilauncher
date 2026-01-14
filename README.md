@@ -6,7 +6,7 @@ Any issues should be reported here. Use at your own risk.
 ## What is this?
 RSI Launcher packaged in a flatpak based on https://github.com/nmlynch94/com.eveonline.EveOnline
 
-Zenity menus are used for a GUI maintenance experience
+Includes GUI maintenance experience
 
 Command line arguments are available for quickly launching functions from the terminal.
 
