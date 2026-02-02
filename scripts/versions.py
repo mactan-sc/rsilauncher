@@ -25,7 +25,7 @@ versions = {
     "rsi-maintenance": {
         "version_placeholder": "RSI_MAINTENANCE_VERSION",
         # renovate: datasource=github-tags depName=mactan-sc/rsi-maintenance
-        "version": "0.9.3",
+        "version": "0.9.4",
         "url_template": "https://github.com/mactan-sc/rsi-maintenance/releases/download/{version}/rsi-maintenance.tar.gz",
     }
 }
