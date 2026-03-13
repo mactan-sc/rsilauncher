@@ -50,6 +50,13 @@ flatpak run --command=umu-run io.github.mactan_sc.RSILauncher winecfg
 flatpak run --command=umu-run io.github.mactan_sc.RSILauncher regedit
 ```
 
+- Launch Winetricks
+```
+flatpak run --command=umu-run  io.github.mactan_sc.RSILauncher winetricks --gui
+
+flatpak run --command=umu-run  io.github.mactan_sc.RSILauncher winetricks -q vcrun2022
+```
+
 - Launch Maintenance Menu
 ```
 flatpak run --command=rsi-maintenance  io.github.mactan_sc.RSILauncher
