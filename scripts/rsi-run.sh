@@ -10,11 +10,6 @@ if [ ! -f "$launcher_cfg_path/$launcher_cfg" ]; then
 fi
 source "$XDG_CONFIG_HOME/starcitizen-lug/launcher.cfg"
 
-mkdir -p ../.local/share/Steam/compatibilitytools.d
-if ! [ -f ../.local/share/Steam/compatibilitytools.d/"$PROTONPATH" ]; then
-  cp -r /app/opt/GE-Proton* ../.local/share/Steam/compatibilitytools.d
-fi
-
 VERSION="$(curl -s 'https://install.robertsspaceindustries.com/rel/2/latest.yml' | yq -r '.version')"
 Launcher_setup_exe_url="https://install.robertsspaceindustries.com/rel/2/RSI%20Launcher-Setup-$VERSION.exe"
 installer_name="RSI-Launcher-setup.exe"
