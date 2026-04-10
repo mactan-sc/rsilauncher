@@ -39,7 +39,7 @@ if ! [ -f "$launcher_exe_path" ]; then
   fi
   rm --interactive=never "$FIFO"
 
-  WINE_NO_PRIV_ELEVATION=1 WINEDLLOVERRIDES="dxwebsetup.exe,dotNetFx45_Full_setup.exe=d" umu-run "$installer_name" /S  | zenity --progress \
+  PROTONPATH= WINE_NO_PRIV_ELEVATION=1 WINEDLLOVERRIDES="dxwebsetup.exe,dotNetFx45_Full_setup.exe=d" umu-run "$installer_name" /S  | zenity --progress \
     --pulsate \
     --no-cancel \
     --auto-close \
