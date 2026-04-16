@@ -1,13 +1,10 @@
 id: io.github.mactan_sc.RSILauncher
 runtime: org.gnome.Platform
-runtime-version: &runtime-version '48'
+runtime-version: &runtime-version '50'
 x-gl-version: &gl-version "1.4"
 x-gl-versions: &gl-versions 24.08;24.08-extra;1.4
 x-gl-merge-dirs: &gl-merge-dirs vulkan/icd.d;glvnd/egl_vendor.d;OpenCL/vendors;lib/dri;lib/d3d;vulkan/explicit_layer.d;vulkan/implicit_layer.d
 sdk: org.gnome.Sdk
-sdk-extensions:
-  - org.gnome.Sdk.Compat.i386
-  - org.freedesktop.Sdk.Extension.toolchain-i386
 command: rsi-run
 separate-locales: false
 finish-args:
