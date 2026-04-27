@@ -15,6 +15,7 @@ Launcher_setup_exe_url="https://install.robertsspaceindustries.com/rel/2/RSI%20L
 installer_name="RSI-Launcher-setup.exe"
 
 launcher_exe_path="$WINEPREFIX/drive_c/Program Files/Roberts Space Industries/RSI Launcher/RSI Launcher.exe"
+game_path="$WINEPREFIX/drive_c/Program Files/Roberts Space Industries/StarCitizen"
 
 # Install if the RSI Launcher exe does not exist
 if ! [ -f "$launcher_exe_path" ]; then
@@ -50,6 +51,12 @@ if ! [ -f "$launcher_exe_path" ]; then
     zenity --info --text="Installation complete.\n\nyou may now launch the RSI Launcher."
   else
     zenity --error --text="Installation failed."
+  fi
+
+  mkdir -p "$game_path/LIVE"
+  if ! [ -f "$game_path/LIVE/Data.p4k" ]; then
+    touch "$game_path/LIVE/Data.p4k.part"
+    touch "$game_path/LIVE/Data.p4k"
   fi
 
   rm "$installer_name"
