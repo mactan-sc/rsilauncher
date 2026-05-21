@@ -12,6 +12,22 @@ Command line arguments are available for quickly launching functions from the te
 
 For Star Citizen Linux User Group community tools visit https://github.com/starcitizen-lug
 
+## Installation
+
+### Repo (automated updates)
+Flatpak repository or [latest release](https://github.com/mactan-sc/rsilauncher/releases/latest)  
+1.  Add the repo
+```
+flatpak remote-add --user --if-not-exists RSILauncher https://mactan-sc.github.io/rsilauncher/RSILauncher.flatpakrepo
+```
+2.  install the rsi launcher flatpak
+```  
+flatpak install -y --user --noninteractive RSILauncher io.github.mactan_sc.RSILauncher
+```
+3.  run the rsi launcher flatpak
+```
+flatpak run io.github.mactan_sc.RSILauncher
+```
 
 ## Configuration 
 
@@ -60,23 +76,6 @@ flatpak run --command=umu-run  io.github.mactan_sc.RSILauncher winetricks -q vcr
 - Launch Maintenance Menu
 ```
 flatpak run --command=rsi-maintenance  io.github.mactan_sc.RSILauncher
-```
-
-## Installation
-
-### Repo (automated updates)
-Flatpak repository or [latest release](https://github.com/mactan-sc/rsilauncher/releases/latest)  
-1.  Add the repo
-```
-flatpak remote-add --user --if-not-exists RSILauncher https://mactan-sc.github.io/rsilauncher/RSILauncher.flatpakrepo
-```
-2.  install the rsi launcher flatpak
-```  
-flatpak install -y --user --noninteractive RSILauncher io.github.mactan_sc.RSILauncher
-```
-3.  run the rsi launcher flatpak
-```
-flatpak run io.github.mactan_sc.RSILauncher
 ```
 
 <p align="center">
