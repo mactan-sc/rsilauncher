@@ -64,6 +64,9 @@ flatpak run --command=umu-run io.github.mactan_sc.RSILauncher winecfg
 - Launch Wine Regedit
 ```
 flatpak run --command=umu-run io.github.mactan_sc.RSILauncher regedit
+
+#example reg add:
+flatpak run --command=umu-run io.github.mactan_sc.RSILauncher reg add 'HKEY_CURRENT_USER\Software\Wine\X11 Driver' /t REG_SZ /v UseTakeFocus /d N /f
 ```
 
 - Launch Winetricks
