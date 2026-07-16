@@ -16,8 +16,9 @@ For Star Citizen Linux User Group community tools visit https://github.com/starc
 
 ### Repo (automated updates)
 Flatpak repository or [latest release](https://github.com/mactan-sc/rsilauncher/releases/latest)  
-1.  Add the repo
+1.  Add remotes
 ```
+flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak remote-add --user --if-not-exists RSILauncher https://mactan-sc.github.io/rsilauncher/RSILauncher.flatpakrepo
 ```
 2.  install the rsi launcher flatpak
