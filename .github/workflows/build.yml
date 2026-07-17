@@ -31,6 +31,8 @@ jobs:
             flatpak-builder \
             elfutils \
             rsync \
+            yq \
+            curl \
             imagemagick \
             p7zip \
             p7zip-rar

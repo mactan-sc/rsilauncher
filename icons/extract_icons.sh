@@ -2,7 +2,10 @@
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 LAUNCHER_EXE_NAME="RSI-Launcher.exe"
 
-curl -L "https://install.robertsspaceindustries.com/rel/2/RSI%20Launcher-Setup-2.4.0.exe" -o "$LAUNCHER_EXE_NAME"
+VERSION="$(curl -s 'https://install.robertsspaceindustries.com/rel/2/latest.yml' | yq -r '.version')"
+Launcher_setup_exe_url="https://install.robertsspaceindustries.com/rel/2/RSI%20Launcher-Setup-$VERSION.exe"
+
+curl -L "$Launcher_setup_exe_url" -o "$LAUNCHER_EXE_NAME"
 
 wrestool -x --output=RSI-Launcher.ico -t14 "$LAUNCHER_EXE_NAME"
 convert "RSI-Launcher.ico" "RSI-Launcher.png"
