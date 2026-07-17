@@ -1,11 +1,11 @@
 id: io.github.mactan_sc.RSILauncher
-runtime: org.gnome.Platform
-runtime-version: &runtime-version '50'
+runtime: org.freedesktop.Platform
+runtime-version: &runtime-version "25.08"
 x-gl-version: &gl-version "1.4"
 x-gl-versions: &gl-versions 24.08;24.08-extra;1.4
 x-gl-merge-dirs: &gl-merge-dirs vulkan/icd.d;glvnd/egl_vendor.d;OpenCL/vendors;lib/dri;lib/d3d;vulkan/explicit_layer.d;vulkan/implicit_layer.d
-sdk: org.gnome.Sdk
-command: rsi-run
+sdk: org.freedesktop.Sdk
+command: rsi-maintenance
 separate-locales: false
 finish-args:
 # pressure vessel
@@ -153,29 +153,6 @@ modules:
             path: io.github.mactan_sc.RSILauncher.metainfo.xml
           - type: file
             path: icons/256/RSI-Launcher.png
-      - name: constants
-        buildsystem: simple
-        build-commands:
-          - install constants.sh /app/constants.sh
-        sources:
-          - type: file
-            path: scripts/constants.sh
-      - name: config
-        buildsystem: simple
-        build-commands:
-          - install launcher.cfg /app/launcher.cfg
-        sources:
-          - type: file
-            path: launcher.cfg
-      - name: launch-script
-        buildsystem: simple
-        build-commands:
-          - mkdir -p /app/bin
-          - install rsi-run /app/bin/rsi-run
-        sources:
-          - type: file
-            dest-filename: rsi-run
-            path: scripts/rsi-run.sh
       - name: maintenance
         buildsystem: simple
         build-commands:
@@ -191,19 +168,3 @@ modules:
             path: io.github.mactan_sc.RSILauncher.maintenance.desktop
           - type: file
             path: icons/256/RSI-Launcher-Maintenance.png
-      - name: zenity
-        buildsystem: meson
-        sources:
-          - type: archive
-            url: https://download.gnome.org/sources/zenity/4.1/zenity-4.1.90.tar.xz
-            sha256: bf3679c6205ff48dcebd1e1dff3a3a4a6a0b3a53e1cbc3b098a9ec0b62bd7236
-      - name: yq
-        buildsystem: simple
-        build-commands:
-          - mkdir -p /app/bin
-          - install yq /app/bin/yq
-        sources:
-          - type: file
-            dest-filename: yq
-            url: https://github.com/mikefarah/yq/releases/download/v4.47.2/yq_linux_amd64
-            sha256: 1bb99e1019e23de33c7e6afc23e93dad72aad6cf2cb03c797f068ea79814ddb0
